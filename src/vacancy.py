@@ -1,8 +1,9 @@
 import json
 
 
-class Vacancy():
+class Vacancy:
     """Класс для работы с вакансиями"""
+    __slots__ = ('name', 'city', 'url', 'salary', 'result')
 
     def __init__(self, name, city, salary):
         """Инициализатор для класса"""
@@ -12,7 +13,7 @@ class Vacancy():
         self.salary: float
         self.result = []
 
-    def reform_file(self):
+    def __reform_file(self):
         """Метод для обработки JSON-ответа от сайта HH.ru"""
         with open("../data/data_vacancy.json", "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -32,8 +33,8 @@ class Vacancy():
             if i["city"] != self.city:
                 self.result.remove(i)
 
-    def filter_salary(self):
-        """Метод фильтрации списка вакансий по нужной заработной плате"""
+    def __lt__(self, other):
+        """ Магический метод фильтрации списка вакансий по заработной плате"""
         for i in self.result:
-            if i["salary"]["to"] < self.salary:
+            if other < self.salary:
                 self.result.remove(i)
