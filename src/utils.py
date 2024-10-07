@@ -1,13 +1,17 @@
-from src.vacancy_api import HH
+def top_vacancy(number, my_list):
+    """Функция вывода Топ-n вакансий для пользователя"""
+    if number == "":
+        return my_list
+    else:
+        return my_list[0:int(number)]
 
 
-def user_interaction():
-    """"""
-    search_query = input("Введите поисковый запрос: ")
-    hh = HH()
-    hh.load_vacancies(search_query)
-    hh.add_vacancy()
-    city_search = input("Введите")
-    top_n = int(input("Введите количество вакансий для вывода в топ N: "))
-    filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
-    salary_range = input("Введите желаемую зарплату: ")
+def filter_vacancy(my_list, words_list):
+    fin_list = []
+    for index in my_list:
+        for i in words_list:
+            if index["description"] is None:
+                continue
+            elif i in index["description"] or i in index["name"]:
+                fin_list.append(index)
+    return fin_list

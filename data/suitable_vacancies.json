@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Python разработчик",
+        "city": "Москва",
+        "salary": {
+            "from": 250000,
+            "to": 300000
+        },
+        "url": "https://hh.ru/vacancy/108168771",
+        "description": "Python 3. Опыт работы с фреймворком FastAPI и с асинхронным вызовами (Asyncpg, Asyncio ...). Опыт работы с микросервисной архитектурой. Docker. PostgreSQL. "
+    }
+][
+    {
+        "name": "Middle Python Backend Developer",
+        "city": "Москва",
+        "salary": {
+            "from": 190000,
+            "to": 0
+        },
+        "url": "https://hh.ru/vacancy/108281326",
+        "description": "Опыт от 1 года. Нам очень важен опыт с любым асинхронным фреймворком (fastapi, aiohttp, tornado). Мы не используем django в..."
+    },
+    {
+        "name": "Python разработчик",
+        "city": "Москва",
+        "salary": {
+            "from": 200000,
+            "to": 250000
+        },
+        "url": "https://hh.ru/vacancy/108289524",
+        "description": "Опыт коммерческой разработки на Python от 3 лет. Опыт коммерческой разработки с FastApi от 2 лет. Опыт работы с микросервисной..."
+    },
+    {
+        "name": "Разработчик БПЛА",
+        "city": "Москва",
+        "salary": {
+            "from": 200000,
+            "to": 0
+        },
+        "url": "https://hh.ru/vacancy/107649514",
+        "description": "Начальные знания в электронике и радиотехнике. Опыт работы с Python: NumPy, Scipy, Matplotlib. Уверенный пользователь Linux. Знание принципа работы прошивок..."
+    }
+]

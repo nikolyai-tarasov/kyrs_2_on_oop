@@ -1,14 +1,13 @@
 from abc import ABC, abstractmethod
 import requests
-import json
 
 
 class Parser(ABC):
     """Родительский класс get-запросов"""
 
     @abstractmethod
-    def add_vacancy(self):
-        """Метод создания JSON-файла и сохранения в него данных по запросу"""
+    def load_vacancies(self, keyword):
+        """Метод отправки get-запроса на сайт Head Hunter"""
         pass
 
 
@@ -32,14 +31,3 @@ class HH(Parser):
             vacancies = response.json()['items']
             self.vacancies.extend(vacancies)
             self.params['page'] += 1
-
-    def add_vacancy(self):
-        """Метод создания JSON-файла и сохранения в него данных по запросу"""
-        if self.vacancies is not None:
-            with open('../data/data_vacancy.json', 'w', encoding="utf-8") as file:
-                json.dump(self.vacancies, file, indent=4, ensure_ascii=False)
-
-
-h_1 = HH()
-h = h_1.load_vacancies("develop")
-print(h_1.add_vacancy())
