@@ -5,7 +5,7 @@ from src.utils import top_vacancy, filter_vacancy
 
 
 def user_interaction():
-    """"""
+    """Функция для взаимодействия с клиентом"""
     search_query = input("Введите поисковый запрос: ")
     hh = HH()
     city_search = input("Введите город для поиска вакансии: ")

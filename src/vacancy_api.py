@@ -12,9 +12,7 @@ class Parser(ABC):
 
 
 class HH(Parser):
-    """
-    Класс для работы с API HeadHunter
-    """
+    """Класс для работы с API HeadHunter"""
 
     def __init__(self):
         """Магический метод инициализаций объектов для отправки get-запроса"""

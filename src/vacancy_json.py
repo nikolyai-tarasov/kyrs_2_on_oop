@@ -35,16 +35,12 @@ class HHVacancy(JSONVacancy):
                 for i in stock_list:
                     if i not in data:
                         data.append(i)
-                    else:
-                        data.remove(i)
-
-            with open(self.file_name_save, 'a', encoding="utf-8") as file:
-                json.dump(data, file, indent=4,
-                          ensure_ascii=False)
-
-        else:
-            with open(self.file_name_save, 'w', encoding="utf-8") as file:
-                json.dump(stock_list, file, indent=4, ensure_ascii=False)
+                with open(self.file_name_save, 'w', encoding="utf-8") as file:
+                    json.dump(data, file, indent=4,
+                              ensure_ascii=False)
+            else:
+                with open(self.file_name_save, 'w', encoding="utf-8") as file:
+                    json.dump(stock_list, file, indent=4, ensure_ascii=False)
 
     def delete_vacancy(self):
         """Метод для удаления не нужного файла"""

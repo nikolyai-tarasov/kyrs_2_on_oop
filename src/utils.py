@@ -1,3 +1,4 @@
+
 def top_vacancy(number, my_list):
     """Функция вывода Топ-n вакансий для пользователя"""
     if number == "":
@@ -7,6 +8,7 @@ def top_vacancy(number, my_list):
 
 
 def filter_vacancy(my_list, words_list):
+    """Функция фильтрации вакансий по ключевым словам в описании или названия вакансии"""
     fin_list = []
     for index in my_list:
         for i in words_list:
