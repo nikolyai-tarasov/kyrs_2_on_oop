@@ -13,15 +13,24 @@ def user_interaction():
     filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
     salary = int(input("Введите желаемую зарплату: "))
     top_n = input("Введите количество вакансий для вывода в топ N: ")
-    vacancy = Vacancy(search_query, city_search, salary)
-    vacancy.reform_file(hh.vacancies)
+    vacancy = Vacancy(search_query, city_search, salary,hh.vacancies)
+    vacancy.valid()
     res_city = vacancy.filter_city()
+    vacancy.valid()
     res_salary = vacancy.__le__(salary, res_city)
     result_fil_words = filter_vacancy(res_salary, filter_words)
     sd = HHVacancy()
     sd.safe_vacancy(result_fil_words)
     result_of_top = top_vacancy(top_n, result_fil_words)
+    del_vacancy = input("Требуется что-нибудь удалить из файла? 'Да,Нет': ")
+    fit_back = input("Требуется определенная выборка для вывода? 'Да,Нет': ")
+    if del_vacancy == 'Да':
+        sd.delete_vacancy()
+    if fit_back == 'Да':
+        sd.vacancy_from_file()
     return result_of_top
 
 
-print(user_interaction())
+# print(user_interaction())
+
+

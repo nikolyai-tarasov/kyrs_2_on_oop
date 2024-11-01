@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 import json
 import os.path
 
@@ -20,9 +21,9 @@ class JSONVacancy(ABC):
 class HHVacancy(JSONVacancy):
     """Класс для создания и удаления файлов с данными по вакансиям из сайта HH.ru"""
 
-    def __init__(self):
+    def __init__(self,file_name_save = 'data/suitable_vacancies.json'):
         """Инициализатор класса"""
-        self.file_name_save = 'data/suitable_vacancies.json'
+        self.file_name_save = file_name_save
 
     def safe_vacancy(self, stock_list):
         """Метод для сохранения данных о вакансиях в файл"""
@@ -43,5 +44,33 @@ class HHVacancy(JSONVacancy):
                     json.dump(stock_list, file, indent=4, ensure_ascii=False)
 
     def delete_vacancy(self):
-        """Метод для удаления не нужного файла"""
-        pass
+        """Метод для удаления не нужных данных из файла"""
+        words_del = input("Введите ключевое слово для удаления данных(Город, название вакансии и тд.): ")
+        data_1 = []
+
+        if os.path.exists('data/suitable_vacancies.json'):
+            with open(self.file_name_save, 'r', encoding="utf-8") as file:
+                data = json.load(file)
+            for i in data:
+                if words_del != i['city'] and words_del not in i['name'] and words_del not in i['description']:
+                    data_1.append(i)
+            with open(self.file_name_save, 'w', encoding="utf-8") as file:
+                json.dump(data_1, file, indent=4,
+                          ensure_ascii=False)
+        else:
+            return 'Файла с таким название не существует'
+
+    def vacancy_from_file(self):
+        """Метод для выборки нужных данных из файла"""
+        words_sample = input("Введите ключевое слово для выборки данных(Город, название вакансии и тд.): ")
+        result_data = []
+        if os.path.exists(self.file_name_save):
+            with open(self.file_name_save, 'r', encoding="utf-8") as file:
+                data = json.load(file)
+            for i in data:
+                if words_sample in i["description"] or words_sample == i['name'] or words_sample == ['city']:
+                    result_data.append(i)
+
+            return result_data
+        else:
+            return 'Файла с таким название не существует'

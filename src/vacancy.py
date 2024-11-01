@@ -1,19 +1,16 @@
-import json
-from src.vacancy_api import HH
-
-
 class Vacancy:
     """Класс для работы с вакансиями"""
-    __slots__ = ('name', 'city', 'salary', 'result')
+    __slots__ = ('name', 'city', 'salary', 'result', 'data_base_hh')
 
-    def __init__(self, name, city, salary):
+    def __init__(self, name, city, salary,data_base_hh ):
         """Инициализатор для класса"""
         self.name = name
         self.city = city
         self.salary = salary
+        self.data_base_hh = data_base_hh
         self.result = []
 
-    def reform_file(self, data_hh):
+    def __reform_file(self, data_hh):
         """Метод для обработки JSON-ответа от сайта HH.ru"""
         for i in data_hh:
             if i["salary"] is None:
@@ -69,3 +66,6 @@ class Vacancy:
             if other <= i["salary"]["from"]:
                 res_salary.append(i)
         return res_salary
+
+    def valid(self):
+        self.__reform_file(self.data_base_hh)

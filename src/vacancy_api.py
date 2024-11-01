@@ -1,3 +1,5 @@
+import json
+
 from abc import ABC, abstractmethod
 import requests
 
@@ -29,3 +31,5 @@ class HH(Parser):
             vacancies = response.json()['items']
             self.vacancies.extend(vacancies)
             self.params['page'] += 1
+
+
