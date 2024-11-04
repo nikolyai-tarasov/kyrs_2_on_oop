@@ -23,14 +23,16 @@ def user_interaction():
     sd.safe_vacancy(result_fil_words)
     result_of_top = top_vacancy(top_n, result_fil_words)
     del_vacancy = input("Требуется что-нибудь удалить из файла? 'Да,Нет': ")
-    fit_back = input("Требуется определенная выборка для вывода? 'Да,Нет': ")
     if del_vacancy == 'Да':
-        sd.delete_vacancy()
+        words_del = input('Введите ключевые слова для удаления вакансий(Название вакансии,город и т.п): ')
+        sd.delete_vacancy(words_del)
+    fit_back = input("Требуется определенная выборка для вывода? 'Да,Нет': ")
     if fit_back == 'Да':
-        sd.vacancy_from_file()
+        words_sample = input("Введите ключевое слово для выборки данных(Город, название вакансии и т.п): ")
+        sd.vacancy_from_file(words_sample)
     return result_of_top
 
 
-# print(user_interaction())
+print(user_interaction())
 
 

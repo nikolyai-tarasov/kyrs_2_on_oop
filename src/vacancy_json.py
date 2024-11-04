@@ -13,7 +13,7 @@ class JSONVacancy(ABC):
         pass
 
     @abstractmethod
-    def delete_vacancy(self):
+    def delete_vacancy(self,words_del):
         """Метод для удаления не нужного файла"""
         pass
 
@@ -43,12 +43,10 @@ class HHVacancy(JSONVacancy):
                 with open(self.file_name_save, 'w', encoding="utf-8") as file:
                     json.dump(stock_list, file, indent=4, ensure_ascii=False)
 
-    def delete_vacancy(self):
+    def delete_vacancy(self, words_del):
         """Метод для удаления не нужных данных из файла"""
-        words_del = input("Введите ключевое слово для удаления данных(Город, название вакансии и тд.): ")
         data_1 = []
-
-        if os.path.exists('data/suitable_vacancies.json'):
+        if os.path.exists('../data/suitable_vacancies.json'):
             with open(self.file_name_save, 'r', encoding="utf-8") as file:
                 data = json.load(file)
             for i in data:
@@ -57,18 +55,18 @@ class HHVacancy(JSONVacancy):
             with open(self.file_name_save, 'w', encoding="utf-8") as file:
                 json.dump(data_1, file, indent=4,
                           ensure_ascii=False)
+            return data_1
         else:
             return 'Файла с таким название не существует'
 
-    def vacancy_from_file(self):
+    def vacancy_from_file(self, words_sample):
         """Метод для выборки нужных данных из файла"""
-        words_sample = input("Введите ключевое слово для выборки данных(Город, название вакансии и тд.): ")
         result_data = []
         if os.path.exists(self.file_name_save):
             with open(self.file_name_save, 'r', encoding="utf-8") as file:
                 data = json.load(file)
             for i in data:
-                if words_sample in i["description"] or words_sample == i['name'] or words_sample == ['city']:
+                if words_sample in i["description"] or words_sample == i['name'] or words_sample == i['city']:
                     result_data.append(i)
 
             return result_data
