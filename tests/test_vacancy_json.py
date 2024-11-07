@@ -51,3 +51,9 @@ def test_vacancy_from_file():
     test_3.safe_vacancy(vacan)
     result = test_3.vacancy_from_file('Москва')
     assert  result == [vacan[0]]
+
+def test_full_data_from_file():
+    """"""
+    test_3 = HHVacancy()
+    test_3.safe_vacancy(vacan)
+    assert test_3.full_data_from_file() == vacan

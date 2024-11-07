@@ -9,6 +9,7 @@ class Vacancy:
         self.salary = salary
         self.data_base_hh = data_base_hh
         self.result = []
+        self.__reform_file(self.data_base_hh)
 
     def __reform_file(self, data_hh):
         """Метод для обработки JSON-ответа от сайта HH.ru"""
@@ -67,5 +68,3 @@ class Vacancy:
                 res_salary.append(i)
         return res_salary
 
-    def valid(self):
-        self.__reform_file(self.data_base_hh)
